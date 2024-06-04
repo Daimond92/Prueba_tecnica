@@ -11,6 +11,9 @@ export class TaskRouter extends BaseRouter<TaskController> {
     this.router.get("/task/:id", (req, res) =>
       this.controller.getTaskbyId(req, res)
     );
+    this.router.get("/tasks/task-user/:id", (req, res) =>
+      this.controller.getTaskWithRelationById(req, res)
+    );
     this.router.post("/createTask", (req, res) =>
       this.controller.createTask(req, res)
     );

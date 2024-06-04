@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseEntity } from "../../config/base.entity";
 import { UserEntity } from "../../user/entities/user.entity";
+import { StatusType } from "../dto/task.dto";
 
 @Entity({ name: "task" })
 export class TaskEntity extends BaseEntity {
@@ -13,8 +14,8 @@ export class TaskEntity extends BaseEntity {
   @Column()
   due_date_task!: Date;
 
-  @Column()
-  status_task!: string;
+  @Column({ type: "enum", enum: StatusType, nullable: false })
+  status_task!: StatusType;
 
   @ManyToOne(() => UserEntity, (user) => user.tasks)
   @JoinColumn({ name: "user_id" })

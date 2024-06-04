@@ -13,8 +13,13 @@ export class TaskDTO extends BaseDTO {
   due_date_task!: Date;
 
   @IsNotEmpty()
-  status_task!: string;
+  status_task!: StatusType;
 
   @IsNotEmpty()
   user!: UserEntity;
+}
+
+export enum StatusType {
+  REALIZADA = "REALIZADA",
+  SINREALIZAR = "SIN REALIZAR",
 }

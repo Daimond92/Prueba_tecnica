@@ -16,6 +16,14 @@ export class TaskService extends BaseService<TaskEntity> {
     return (await this.execRepository).findOneBy({ id });
   }
 
+  async findTaskWithRelation(id: string): Promise<TaskEntity | null> {
+    return (await this.execRepository)
+      .createQueryBuilder("task")
+      .leftJoinAndSelect("task.user", "user")
+      .where({ id })
+      .getOne();
+  }
+
   async createTask(body: TaskDTO): Promise<TaskEntity> {
     return (await this.execRepository).save(body);
   }

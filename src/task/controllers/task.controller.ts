@@ -35,6 +35,20 @@ export class TaskController {
     }
   }
 
+  async getTaskWithRelationById(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const data = await this.taskService.findTaskWithRelation(id);
+      if (!data) {
+        return this.httpResponse.NotFound(res, "No existe tarea");
+      }
+      return this.httpResponse.Ok(res, data);
+    } catch (e) {
+      console.error(e);
+      return this.httpResponse.Error(res, e);
+    }
+  }
+
   async createTask(req: Request, res: Response) {
     try {
       const data = await this.taskService.createTask(req.body);

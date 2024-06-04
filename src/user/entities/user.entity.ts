@@ -15,9 +15,6 @@ export class UserEntity extends BaseEntity {
   @Column()
   password_user!: string;
 
-  @Column()
-  role_user!: string;
-
   @OneToMany(() => TaskEntity, (task) => task.user)
   tasks!: TaskEntity[];
 }
