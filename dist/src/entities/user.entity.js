@@ -9,26 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseEntity = void 0;
+exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
-class BaseEntity {
-}
-exports.BaseEntity = BaseEntity;
+const base_entity_1 = require("../config/base.entity");
+let UserEntity = class UserEntity extends base_entity_1.BaseEntity {
+};
+exports.UserEntity = UserEntity;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], BaseEntity.prototype, "id", void 0);
+], UserEntity.prototype, "name_user", void 0);
 __decorate([
-    (0, typeorm_1.CreateDateColumn)({
-        name: "created_ad",
-        type: "timestamp",
-    }),
-    __metadata("design:type", Date)
-], BaseEntity.prototype, "createdAd", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], UserEntity.prototype, "username_user", void 0);
 __decorate([
-    (0, typeorm_1.UpdateDateColumn)({
-        name: "updated_ad",
-        type: "timestamp",
-    }),
-    __metadata("design:type", Date)
-], BaseEntity.prototype, "updatedAd", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], UserEntity.prototype, "password_user", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], UserEntity.prototype, "role_user", void 0);
+exports.UserEntity = UserEntity = __decorate([
+    (0, typeorm_1.Entity)({ name: "user" })
+], UserEntity);

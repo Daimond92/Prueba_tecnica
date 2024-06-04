@@ -55,10 +55,11 @@ class ConfigServer {
         return {
             type: "mysql",
             host: this.getEnvironment("DB_HOST"),
+            port: this.getNumberEnv("DB_PORT"),
             username: this.getEnvironment("DB_USER"),
             database: this.getEnvironment("DB_DATABASE"),
             entities: [__dirname + "/../**/*.entity{.ts,.js}"],
-            migrations: [__dirname + "/../../migrations/*{.ts,.js}"],
+            //migrations: [__dirname + "/../../migrations/*{.ts,.js}"],
             synchronize: true,
             logging: false,
             namingStrategy: new typeorm_naming_strategies_1.SnakeNamingStrategy(),
