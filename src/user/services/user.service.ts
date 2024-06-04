@@ -18,9 +18,11 @@ export class UserService extends BaseService<UserEntity> {
   async createUser(body: UserDTO): Promise<UserEntity> {
     return (await this.execRepository).save(body);
   }
+
   async deleteUser(id: string): Promise<DeleteResult> {
     return (await this.execRepository).delete({ id });
   }
+
   async updateUser(id: string, infoUpdate: UserDTO): Promise<UpdateResult> {
     return (await this.execRepository).update(id, infoUpdate);
   }
