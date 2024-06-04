@@ -13,6 +13,7 @@ exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
 const base_entity_1 = require("../../config/base.entity");
 const task_entity_1 = require("../../task/entities/task.entity");
+const class_transformer_1 = require("class-transformer");
 let UserEntity = class UserEntity extends base_entity_1.BaseEntity {
 };
 exports.UserEntity = UserEntity;
@@ -25,6 +26,7 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "username_user", void 0);
 __decorate([
+    (0, class_transformer_1.Exclude)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "password_user", void 0);

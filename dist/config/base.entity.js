@@ -20,15 +20,15 @@ __decorate([
 ], BaseEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({
-        name: "created_ad",
+        name: "created_at",
         type: "timestamp",
     }),
     __metadata("design:type", Date)
-], BaseEntity.prototype, "createdAd", void 0);
+], BaseEntity.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)({
-        name: "updated_ad",
+        name: "updated_at",
         type: "timestamp",
     }),
     __metadata("design:type", Date)
-], BaseEntity.prototype, "updatedAd", void 0);
+], BaseEntity.prototype, "updatedAt", void 0);

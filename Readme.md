@@ -87,3 +87,5 @@ Luego se van a activar las siguientes opciones:
 # Crear router
 
 # Crear config
+
+# Crear entidades
