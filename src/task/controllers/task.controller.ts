@@ -1,14 +1,23 @@
 import { Request, Response } from "express";
 import { TaskService } from "../services/task.service";
+import { HttpResponse } from "../../shared/response/http.response";
+import { DeleteResult, UpdateResult } from "typeorm";
 
 export class TaskController {
-  constructor(private readonly taskService: TaskService = new TaskService()) {}
+  constructor(
+    private readonly taskService: TaskService = new TaskService(),
+    private readonly httpResponse: HttpResponse = new HttpResponse()
+  ) {}
   async getTasks(req: Request, res: Response) {
     try {
       const data = await this.taskService.findAllTask();
-      res.status(200).json(data);
+      if (data.length === 0) {
+        return this.httpResponse.NotFound(res, "No existen tareas");
+      }
+      return this.httpResponse.Ok(res, data);
     } catch (error) {
       console.error(error);
+      return this.httpResponse.Error(res, error);
     }
   }
 
@@ -16,38 +25,60 @@ export class TaskController {
     const { id } = req.params;
     try {
       const data = await this.taskService.findTaskbyId(id);
-      res.status(200).json(data);
+      if (!data) {
+        return this.httpResponse.NotFound(res, "No existe tarea");
+      }
+      return this.httpResponse.Ok(res, data);
     } catch (error) {
       console.error(error);
+      return this.httpResponse.Error(res, error);
     }
   }
 
   async createTask(req: Request, res: Response) {
     try {
       const data = await this.taskService.createTask(req.body);
-      res.status(200).json(data);
+      return this.httpResponse.Ok(res, data);
     } catch (error) {
       console.error(error);
+      return this.httpResponse.Error(res, error);
     }
   }
 
   async updateTask(req: Request, res: Response) {
     const { id } = req.params;
     try {
-      const data = await this.taskService.updateTask(id, req.body);
-      res.status(200).json(data);
+      const data: UpdateResult = await this.taskService.updateTask(
+        id,
+        req.body
+      );
+      if (!data.affected) {
+        return this.httpResponse.NotFound(
+          res,
+          "Hay un error en la actualización de la tarea"
+        );
+      }
+      return this.httpResponse.Ok(res, data);
     } catch (error) {
       console.error(error);
+      return this.httpResponse.Error(res, error);
     }
   }
 
   async deleteTask(req: Request, res: Response) {
     const { id } = req.params;
     try {
-      const data = await this.taskService.deleteTask(id);
-      res.status(200).json(data);
+      const data: DeleteResult = await this.taskService.deleteTask(id);
+      if (!data.affected) {
+        return this.httpResponse.NotFound(
+          res,
+          "Hay un error en la actualización de la tarea"
+        );
+      }
+      return this.httpResponse.Ok(res, data);
     } catch (error) {
       console.error(error);
+      return this.httpResponse.Error(res, error);
     }
   }
 }

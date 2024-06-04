@@ -3,6 +3,8 @@ import morgan from "morgan";
 import cors from "cors";
 import { UserRouter } from "./user/user.router";
 import { ConfigServer } from "./config/config";
+import { DataSource } from "typeorm";
+import { TaskRouter } from "./task/task.router";
 
 class ServerBootstrap extends ConfigServer {
   public app: express.Application = express();
@@ -12,20 +14,26 @@ class ServerBootstrap extends ConfigServer {
     super();
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-
     this.dbConnect();
-
     this.app.use(morgan("dev"));
     this.app.use(cors());
-
     this.app.use("/api", this.routers());
     this.listen();
   }
 
   routers(): Array<express.Router> {
-    return [new UserRouter().router];
+    return [new UserRouter().router, new TaskRouter().router];
   }
 
+  async dbConnect(): Promise<DataSource | void> {
+    return this.initConnect
+      .then(() => {
+        console.log("Connect success");
+      })
+      .catch((error) => {
+        console.error(Error);
+      });
+  }
   public listen() {
     this.app.listen(this.port, () => {
       console.log("Server listening on port =>" + this.port);

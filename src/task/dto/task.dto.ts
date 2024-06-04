@@ -1,4 +1,4 @@
-import { IsNotEmpty, isNotEmpty } from "class-validator";
+import { IsNotEmpty } from "class-validator";
 import { BaseDTO } from "../../config/base.dto";
 import { UserEntity } from "../../user/entities/user.entity";
 
