@@ -7,6 +7,7 @@ import { DataSource } from "typeorm";
 import { TaskRouter } from "./task/task.router";
 import { LoginStrategy } from "./auth/strategies/login.strategy";
 import { JwtStrategy } from "./auth/strategies/jwt.strategy";
+import { AuthRouter } from "./auth/auth.router";
 
 class ServerBootstrap extends ConfigServer {
   public app: express.Application = express();
@@ -25,7 +26,11 @@ class ServerBootstrap extends ConfigServer {
   }
 
   routers(): Array<express.Router> {
-    return [new UserRouter().router, new TaskRouter().router];
+    return [
+      new UserRouter().router,
+      new TaskRouter().router,
+      new AuthRouter().router,
+    ];
   }
 
   passportUse() {
