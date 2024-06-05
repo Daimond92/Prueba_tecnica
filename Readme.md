@@ -45,10 +45,15 @@ Para el desarrollo de la prueba se van a instalar las siguientes dependencias:
 - typeorm.
 - typeorm-naming-strategies.
 - typescript.
+- bcrypt
+- jsonwebtoken
+- passport-jwt
+- passport
+- passport-local
 
 Desde la terminal se va ejecutar el siguiente código para la instalación de estas dependencias:
 
-    npm install class-validator class-transformer cors dotenv express morgan mysql typeorm typeorm-naming-strategies typescript
+    npm install class-validator class-transformer cors dotenv express morgan mysql typeorm typeorm-naming-strategies typescript bcrypt jsonwebtoken passport-jwt passport passport-local
 
 Adicionalmente, se van a instalar otras dependencias de desarrollo que no serán utilizadas en la etapa de producción y son las siguientes:
 
@@ -58,10 +63,13 @@ Adicionalmente, se van a instalar otras dependencias de desarrollo que no serán
 - concurrently.
 - nodemon.
 - types/mysql2.
+- types/bcrypt.
+- types/passport-jwt
+- types/passport-local
 
 Desde la terminal se va ejecutar el siguiente código para la instalación de estas dependencias:
 
-    npm install -D @types/cors @types/express @types/morgan concurrently nodemon types/mysql2
+    npm install -D @types/cors @types/express @types/morgan concurrently nodemon types/mysql2 @types/bcrypt @types/passport-jwt @types/passport-local
 
 ## Crear tsconfig.json
 
