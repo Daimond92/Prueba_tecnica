@@ -1,9 +1,10 @@
 import { BaseRouter } from "../shared/routers/router";
 import { TaskController } from "./controllers/task.controller";
+import { TaskMiddleware } from "./middlewares/task.middleware";
 
-export class TaskRouter extends BaseRouter<TaskController> {
+export class TaskRouter extends BaseRouter<TaskController, TaskMiddleware> {
   constructor() {
-    super(TaskController);
+    super(TaskController, TaskMiddleware);
   }
 
   routes(): void {
@@ -14,8 +15,10 @@ export class TaskRouter extends BaseRouter<TaskController> {
     this.router.get("/tasks/task-user/:id", (req, res) =>
       this.controller.getTaskWithRelationById(req, res)
     );
-    this.router.post("/createTask", (req, res) =>
-      this.controller.createTask(req, res)
+    this.router.post(
+      "/createTask",
+      (req, res, next) => [this.middleware.taskValidator(req, res, next)],
+      (req, res) => this.controller.createTask(req, res)
     );
     this.router.put("/updateTask", (req, res) =>
       this.controller.updateTask(req, res)
