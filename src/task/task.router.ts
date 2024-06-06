@@ -20,7 +20,7 @@ export class TaskRouter extends BaseRouter<TaskController, TaskMiddleware> {
       (req, res, next) => [this.middleware.taskValidator(req, res, next)],
       (req, res) => this.controller.createTask(req, res)
     );
-    this.router.put("/updateTask", (req, res) =>
+    this.router.put("/updateTask/:id", (req, res) =>
       this.controller.updateTask(req, res)
     );
     this.router.delete("/deleteTask/:id", (req, res) =>

@@ -86,7 +86,7 @@ export class TaskController {
       if (!data.affected) {
         return this.httpResponse.NotFound(
           res,
-          "Hay un error en la actualización de la tarea"
+          "Hay un error en eliminar la tarea"
         );
       }
       return this.httpResponse.Ok(res, data);

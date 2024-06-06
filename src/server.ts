@@ -6,7 +6,7 @@ import { ConfigServer } from "./config/config";
 import { DataSource } from "typeorm";
 import { TaskRouter } from "./task/task.router";
 import { LoginStrategy } from "./auth/strategies/login.strategy";
-import { JwtStrategy } from "./auth/strategies/jwt.strategy";
+//import { JwtStrategy } from "./auth/strategies/jwt.strategy";
 import { AuthRouter } from "./auth/auth.router";
 
 class ServerBootstrap extends ConfigServer {
@@ -34,7 +34,7 @@ class ServerBootstrap extends ConfigServer {
   }
 
   passportUse() {
-    return [new LoginStrategy().use, new JwtStrategy().use];
+    return [new LoginStrategy().use];
   }
 
   async dbConnect(): Promise<DataSource | void> {

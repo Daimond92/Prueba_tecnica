@@ -1,4 +1,4 @@
-import { PayloadToken } from "../interfaces/auth.interface";
+/*import { PayloadToken } from "../interfaces/auth.interface";
 import { Strategy as JwtStr, StrategyOptions, ExtractJwt } from "passport-jwt";
 import { AuthService } from "../services/auth.service";
 import { PassportUse } from "../utils/passport.use";
@@ -22,8 +22,9 @@ export class JwtStrategy extends AuthService {
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         secretOrKey: this.getEnvironment("JWT_SECRET"),
+        ignoreExpiration: false,
       },
       this.validate
     );
   }
-}
+}*/

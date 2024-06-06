@@ -9,6 +9,7 @@ export class UserRouter extends BaseRouter<UserController, UserMiddleware> {
 
   routes(): void {
     this.router.get("/users", (req, res) => this.controller.getUsers(req, res));
+
     this.router.get("/user/:id", (req, res) =>
       this.controller.getUserbyId(req, res)
     );
